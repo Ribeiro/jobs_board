@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row clearfix">
+        <div class="col-md-12 column">
+             <% flash.each do |key, value| %>
+                <div class="alert alert-<%= key %>"><%= value %></div>
+              <% end %>
+        </div>
+      </div>
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <div class="page-header">
+        <h1>
+          Jobs Listing <small>Find yours!</small>
+        </h1>
+      </div>
+      <div class="row clearfix">
+        <div class="col-md-6 column">
+        </div>
+        <div class="col-md-6 column">
+          <%= link_to new_job_path do %>
+            <button type="button" class="btn btn-info btn-default">Add</button>
+           <% end %>
+        </div>
+      </div>
+
+      <% if @jobs.length > 0%>
+          <div class="row clearfix">
+            <div class="col-md-12 column">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>
+                      Title
+                    </th>
+                    <th>
+                      Description
+                    </th>
+                    <th colspan="2">
+                      Action
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="job-index">
+                    <%= render @jobs %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">          
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div id="job-modal"></div>
+                    </div>
+                </div>
+          </div>
+          
+      <% else %>
+          <p class="alert alert-error">No records found!</p>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>

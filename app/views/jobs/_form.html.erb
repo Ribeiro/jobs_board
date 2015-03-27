@@ -1,0 +1,22 @@
+<%= form_for @job, remote: true, html: { class: "form-horizontal", style: "display:inline;" } do |f| %>
+  <div class="modal-body">
+    <ul class="errors"></ul>
+
+    <div class="control-group">
+      <%= f.label :title, class:"control-label" %>
+      <div class="controls">
+        <%= f.text_field :title %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :description, class: "control-label" %>
+      <div class="controls">
+        <%= f.text_field :description %>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <%= f.submit class: "btn btn-primary" %>
+    <%= link_to "Cancel", "#", class: "btn btn-default", data: {dismiss: "modal"} %>
+  </div>
+<% end %>
