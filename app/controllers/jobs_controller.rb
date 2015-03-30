@@ -1,7 +1,8 @@
 class JobsController < ApplicationController
   before_action :all_jobs, only: [:index, :create, :update, :destroy]
   before_action :set_job, only: [:show, :edit, :update, :destroy]
-  respond_to :html, :js
+
+  respond_to :html
 
 
   # GET /jobs
@@ -22,6 +23,9 @@ class JobsController < ApplicationController
 
   # GET /jobs/1/edit
   def edit
+    respond_to do |format|
+      format.js { render :partial => "edit" }
+    end
   end
 
   # POST /jobs
@@ -46,13 +50,15 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1.json
   def update
     respond_to do |format|
+      format.html { redirect_to jobs_url}
       if @job.update(job_params)
         flash[:success] = "Job was successfully updated!"
-        format.html { redirect_to @job }
-        format.json { render :show, status: :ok, location: @job }
+        # format.json { render :show, status: :ok, location: @job }
+
       else
-        format.html { render :edit }
-        format.json { render json: @job.errors, status: :unprocessable_entity }
+        flash[:error] = "An error occurred whil updating Job!"
+        # format.json { render json: @job.errors, status: :unprocessable_entity }
+
       end
     end
   end
@@ -62,8 +68,9 @@ class JobsController < ApplicationController
   def destroy
     @job.destroy
     respond_to do |format|
-      format.js  {}
-      # format.html { redirect_to jobs_url, notice: 'Job was successfully destroyed.' }
+      #  flash[:success] = "Job was successfully destroyed!"
+      format.js  {notice :"Job was successfully updated!"}
+      # format.html { redirect_to jobs_url}
       # format.json { head :no_content }
     end
   end

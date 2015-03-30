@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row clearfix">
-        <div class="col-md-12 column">
+  <div class="row clearfix" id="index-flash">
+        <div class="col-md-12 column"  id="index-flash-content">
              <% flash.each do |key, value| %>
                 <div class="alert alert-<%= key %>"><%= value %></div>
               <% end %>
@@ -47,16 +47,13 @@
             </div>
           </div>
 
-          <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">          
+          <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                       <div id="job-modal"></div>
                     </div>
                 </div>
           </div>
-          
-      <% else %>
-          <p class="alert alert-error">No records found!</p>
 
       <% end %>
 
